@@ -1,0 +1,92 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool: Default
+
+stages:
+  - stage: ARM_Template_deploy
+    jobs:
+      - job: ARM_Template_deploy
+        steps:
+          - checkout: self
+          
+          # - task: AzureResourceManagerTemplateDeployment@3
+          #   displayName: Storage Account Deployment
+          #   inputs:
+          #     deploymentScope: 'Resource Group'
+          #     azureResourceManagerConnection: 'armserviceconn'
+          #     subscriptionId: '43ba208b-89cb-4833-824e-3088e4bbda4e'
+          #     action: 'Create Or Update Resource Group'
+          #     resourceGroupName: 'armtemplatedeploy'
+          #     location: 'Central India'
+          #     templateLocation: 'Linked artifact'
+          #     csmFile: '$(System.DefaultWorkingDirectory)/Templates/storage-account-encrypted.json'
+          #     csmParametersFile: '$(System.DefaultWorkingDirectory)/Templates/storage-account-parameters.json'
+          #     deploymentMode: 'Incremental'
+          #     deploymentName: 'Storage_account_deployment'
+          #     deploymentOutputs: 'storageAccountName'
+
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: User Assigned Managed Identity Deployment
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'armserviceconn'
+              subscriptionId: '43ba208b-89cb-4833-824e-3088e4bbda4e'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'tonzdevops'
+              location: 'Central India'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.DefaultWorkingDirectory)/Templates/userManagedIdentity.json'
+              csmParametersFile: '$(System.DefaultWorkingDirectory)/Templates/userManagedIdentity-parameters.json'
+              deploymentMode: 'Incremental'
+              deploymentName: 'User_Assigned_Management_Identity'
+
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: Workspace Deployment for Monitoring
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'armserviceconn'
+              subscriptionId: '43ba208b-89cb-4833-824e-3088e4bbda4e'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'tonzdevops'
+              location: 'Central India'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.DefaultWorkingDirectory)/Templates/log-analytics-workspace.json'
+              csmParametersFile: '$(System.DefaultWorkingDirectory)/Templates/log-analytics-workspace-parameters.json'
+              deploymentMode: 'Incremental'
+              deploymentName: 'Monitoring_Workspace'
+
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: Data Collection Rule Deployment
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'armserviceconn'
+              subscriptionId: '43ba208b-89cb-4833-824e-3088e4bbda4e'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'tonzdevops'
+              location: 'Central India'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.DefaultWorkingDirectory)/Templates/Dcr-Template.json'
+              csmParametersFile: '$(System.DefaultWorkingDirectory)/Templates/Dcr-Parameters.json'
+              deploymentMode: 'Incremental'
+              deploymentName: 'DCR_Deployment'
+          
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: Linux Virtual Machine Deployment
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'armserviceconn'
+              subscriptionId: '43ba208b-89cb-4833-824e-3088e4bbda4e'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'tonzdevops'
+              location: 'Central India'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.DefaultWorkingDirectory)/Templates/virtual-machine.json'
+              csmParametersFile: '$(System.DefaultWorkingDirectory)/Templates/virtual-machine-parameters.json'
+              deploymentMode: 'Incremental'
+              deploymentName: 'virtualMachine'

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName":{
+      "value": "tonz"
+    },
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "adminPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQL+cS9ilcauxVVo5rHuo5s6uSMmXLTjGzyCnOKkLtGe+hTcjdd+8AQ865fnw0strKOrJ4nhrjHp//j8iXVQ2uLPaYaeqA6tWSRb8aAVMPCgdNafU+kvLLW2EZxC8bL1uzr5nQq3kR7bH8vfNhqwSwiPyAgKyQcYQJucV/XNg0CSaRAisGzUWIVv4ouRGDgeB8TOywuik8x4PAyuSdBiNdQQgKyR95ckgjNcm1gO3nZWWGhPgCNVziyd/IK5djM36GTEwIDLELwa0Cm71xQYVqeGVZZ3gkixlK0uISJBhpDgPCs0z0ewdyBX2APvMUyCeIG6+TrnxdLtj7Pb6qhq20O3AMOtlnRmANehMbRNzhpUlukO7xDQN9tCV2gZoA1y2EiAJEcwqlOXaJPsxtKqtRUOQUI/O+mk0pbdCuMTiOTztQzuX2n+16Q3BW4GqCPuYYNrdxqf9I/kCXnEs8jGAK+4YfuT17+IQqk+ZSYQ/WmkVd7VaXZVMB8oegUXAzZBaah/aZ+HenqKnxvdsBjbIRnaQBEtI4Wx7y4Qr7aRB6Za4vnoOXt4k1Prx1cIjTjQtPf+Fcu302S+7iveuq/+TIwMLYt3KC4A4MbdkfZI5uGb1S8G4/Zg+RXW8DC5Q3R8D0IDJnFdq6MYD9mybzd+t5JCKfZiuWCJz6A7e3JSL23VwQ== tonz@NBLM19-192"
+    },
+    "userAssignedManagedIdentity": {
+      "value": "tonz-devops-managed-identity"
+    },
+    "osType": {
+      "value": "linux"
+    },
+    "workspaceResourceId": {
+      "value": "/subscriptions/43ba208b-89cb-4833-824e-3088e4bbda4e/resourcegroups/tonzdevops/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    },
+    "dataCollectionRuleId": {
+      "value": "/subscriptions/43ba208b-89cb-4833-824e-3088e4bbda4e/resourceGroups/tonzdevops/providers/Microsoft.Insights/dataCollectionRules/MSVMI-PerfandDa-tonzdcr"
+    }
+  }
+}

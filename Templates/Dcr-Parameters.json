@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "WorkspaceResourceId": {
+            "value": "/subscriptions/43ba208b-89cb-4833-824e-3088e4bbda4e/resourcegroups/tonzdevops/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+        },
+        "userGivenDcrName": {
+            "value": "tonzdcr"
+        }
+    }
+}
